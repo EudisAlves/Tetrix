@@ -1,4 +1,5 @@
-import Arena from "./arena";
+import Arena from "./arena.js";
+
 export default class GameManager {
   static start(config) {
     GameManager.config = config;
@@ -11,13 +12,12 @@ export default class GameManager {
     canvas.height = GameManager.config.height;
 
     GameManager.context = canvas.getContext("2d");
-    // GameManager.arena = new Arena();
+    GameManager.arena = new Arena();
     GameManager._draw();
   }
 
   static _draw() {
     GameManager.arena.draw();
-
-    requestAnimationFrame(GameManager._draw);
+    requestAnimationFrame(GameManager._draw);// esse metodo vai chamar constantemente o draw
   }
 }
