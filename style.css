@@ -6,8 +6,6 @@ body {
 
 .canvas-container {
   text-align: center;
+  background-color: rgb(148, 144, 141);
 }
 
-canvas {
-  background-color: rgb(247, 231, 8);
-}

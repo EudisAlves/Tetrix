@@ -1,4 +1,5 @@
 import GameManager from "./game-manager.js";
+import Square from "./square.js";
 
 export default class Arena {
   constructor() {
@@ -10,14 +11,16 @@ export default class Arena {
       top: (GameManager.config.height - this._height) / 2,
       left: (GameManager.config.width - this._width) / 2,
     }
+    this._squares = [...Array(this._columns)].map(()=>[...Array(this._lines)]);
+    this._squares[2][6] = new Square("#bb0000");
   }
   draw() {
     this._drawBorder();
-    //_drawSquares()
-    this._drawGrid()
+    this._drawGrid();
+    this._drawSquares();
   }
 
-  _drawBorder() {//metodo para desenhar a borda
+  _drawBorder() {//metodo para desenhar a bordas
     GameManager.context.strokeStyle = "#000000";
     GameManager.context.strokeRect(
       this.position.left,
@@ -26,15 +29,27 @@ export default class Arena {
       this._height
     );
   }
+  _drawSquares() {
+    for (let i = 0; i < this._columns; i++) {
+      for (let j = 0; j < this._lines; j++) {
+        if (this._squares[i][j]) {    
+          this._squares[i][j].draw(
+            this.position.left + i * GameManager.config.squareSize,
+            this.position.top + j * GameManager.config.squareSize
+          );
+        }
+      }
+    }
+  }
 
-  _drawGrid() {//Metodod para desenhar a grade dos blocos
-
+  _drawGrid() {//Metodo para desenhar a grade dos blocos
+    
     //beginPath: metodo que diz que ira começar a desenhar uma sequencias de linhas
     //moveTo: metodo diz de onde a linha começar
     //lineTo: metodo que diz onde a linha vai terminar
-    //storke: metodo para desenhar tudo que foi dito nos metodos moveTo e lineTo
-  
-    GameManager.context.strokeStyle = "#dedede";
+    //stroke: metodo para desenhar tudo que foi dito nos metodos moveTo e lineTo
+    
+    GameManager.context.strokeStyle = "#eeffee";
     GameManager.context.beginPath();
     for (let i = 1; i< this._lines; i++) {
       GameManager.context.moveTo(this.position.left, this.position.top + GameManager.config.squareSize * i);
