@@ -1,6 +1,8 @@
 import GameManager from "./game-manager.js";
-import Square from "./square.js";
 import Polyomino from "./polyomino.js";
+import Square from "./square.js";
+import TetrominoFactory from "./tetromino-factory.js";
+
 
 export default class Arena {
   constructor() {
@@ -12,25 +14,16 @@ export default class Arena {
       top: (GameManager.config.height - this._height) / 2,
       left: (GameManager.config.width - this._width) / 2,
     }
-    this._squares = [...Array(this._columns)].map(()=>[...Array(this._lines)]);
+    this._squares = [...Array(this._columns)].map(() => [...Array(this._lines)]);
     
-    this.currentPiece = new Polyomino(
-      4,
-      "#aeddaa",
-      [
-        [0,0,0,0],
-        [0,1,1,0],
-        [1,1,0,0],
-        [0,0,0,0]
-      ]
-    );
+    this._currentPiece = new TetrominoFactory().getTetromino();
   }
   
   draw() {
     this._drawBorder();
     this._drawGrid();
     this._drawSquares();
-    this.currentPiece.draw(3, 6);
+    this._currentPiece.draw(3, 6);
   }
 
   _drawBorder() {//metodo para desenhar a bordas

@@ -1,4 +1,5 @@
 import GameManager from "./game-manager.js";
+import TetrominoFactory from "./tetromino-factory.js";
 
 const config = { //configurações do jogo
     width: 960,
@@ -9,3 +10,8 @@ const config = { //configurações do jogo
 };
 
 GameManager.start(config);
+
+const tetrominoFactory = new TetrominoFactory(); // Criar uma instância de TetrominoFactory
+const tetromino = tetrominoFactory.getTetromino(); // Obter um tetromino
+
+GameManager.start(config, tetromino); // Iniciar o jogo com as configurações e o tetromino
