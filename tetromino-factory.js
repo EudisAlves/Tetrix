@@ -35,7 +35,7 @@ export default class TetrominoFactory {
       ),
       () => new Tetromino(
         
-        "#f0c70d",
+        "#235555",
         [
           [0, 0, 0, 0],
           [0, 1, 1, 0],

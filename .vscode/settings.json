@@ -1,10 +1,16 @@
 {
   "cSpell.words": [
+    "aleatoria",
+    "aparecer",
     "blocos",
     "bordas",
+    "carregada",
+    "chamar",
     "começar",
     "desenhar",
     "dito",
+    "esperar",
+    "fazer",
     "linha",
     "linhas",
     "metodo",
@@ -12,9 +18,11 @@
     "onde",
     "Polyomino",
     "sequencias",
+    "tela",
     "terminar",
     "Tetris",
     "Tetromino",
+    "tetrominos",
     "tudo"
   ]
 }

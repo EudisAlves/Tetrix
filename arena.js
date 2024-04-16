@@ -1,5 +1,4 @@
 import GameManager from "./game-manager.js";
-import Polyomino from "./polyomino.js";
 import Square from "./square.js";
 import TetrominoFactory from "./tetromino-factory.js";
 
@@ -16,14 +15,22 @@ export default class Arena {
     }
     this._squares = [...Array(this._columns)].map(() => [...Array(this._lines)]);
     
-    this._currentPiece = new TetrominoFactory().getTetromino();
+    this.currentPiece = new TetrominoFactory().getTetromino().setPosition(1, 3);
+    this._currentPieceFallInterval = setInterval(this._currentPieceFall, 1000);
+  }
+
+  _currentPieceFall() {//Função para verificar se as peças podem continuar a cair
+
+    if (!GameManager.arena.currentPiece.tryMoveDown()) {//caso o metodo não currentPiece não coseguiu andar para baixo ele recebe uma nova instrução no setPosition
+      GameManager.arena.currentPiece = new TetrominoFactory().getTetromino().setPosition(1, 3);
+    }
   }
   
   draw() {
     this._drawBorder();
     this._drawGrid();
     this._drawSquares();
-    this._currentPiece.draw(3, 6);
+    this.currentPiece.draw();
   }
 
   _drawBorder() {//metodo para desenhar a bordas

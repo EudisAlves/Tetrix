@@ -17,6 +17,7 @@ export default class GameManager {
   }
 
   static _draw() {
+    GameManager.context.clearRect(0, 0, GameManager.config.width, GameManager.config.height);
     GameManager.arena.draw();
     requestAnimationFrame(GameManager._draw);// esse metodo vai chamar constantemente o draw
   }
