@@ -22,10 +22,23 @@ export default class Arena {
   _currentPieceFall() {//Função para verificar se as peças podem continuar a cair
 
     if (!GameManager.arena.currentPiece.tryMoveDown()) {//caso o metodo não currentPiece não coseguiu andar para baixo ele recebe uma nova instrução no setPosition
+      GameManager.arena.currentPiece.margeToArena();
       GameManager.arena.currentPiece = new TetrominoFactory().getTetromino().setPosition(1, 3);
     }
   }
-  
+
+  isOutsideBoundaries(i, j, piece) {//metodo para fazer a peça parar sobre outra
+    return (piece.position.y +j) >= this._lines;
+  }
+
+  conflicts(i, j, piece) {//metodo para verificar se à outra peça na mesma posição 
+    return this._squares[piece.position.x + i][piece.position.y + j];
+  }
+
+  setSquare(i, j, square) { //chamada de margem
+    this._squares[i][j] = square;
+  }
+
   draw() {
     this._drawBorder();
     this._drawGrid();
