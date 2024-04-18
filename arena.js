@@ -28,11 +28,13 @@ export default class Arena {
   }
 
   isOutsideBoundaries(i, j, piece) {//metodo para fazer a peça parar sobre outra
-    return (piece.position.y +j) >= this._lines;
+    return (piece.position.y +j) >= this._lines
+    || (piece.position.x + i) >= this._columns
+    || (piece.position.x + i) < 0;
   }
 
   conflicts(i, j, piece) {//metodo para verificar se à outra peça na mesma posição 
-    return this._squares[piece.position.x + i][piece.position.y + j];
+    return this._squares[piece.position.x + i][piece.position.y + j]
   }
 
   setSquare(i, j, square) { //chamada de margem

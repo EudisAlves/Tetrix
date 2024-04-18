@@ -49,6 +49,38 @@ export default class Polyomino {
     ).setPosition(this.position.x, this.position.y);
   }
 
+  tryMoveLeft() {
+    let copy = this.clone();
+    copy.position.x--;
+
+    for (let i = 0; i < this._squaresCount; i++) {
+      for (let j = 0; j < this._squaresCount; j++) {
+        if (this._squares[i][j] && (GameManager.arena.isOutsideBoundaries(i, j, copy) || GameManager.arena.conflicts(i, j, copy))) {
+          return false;
+        }
+      }
+    }
+    this.position.x--;//caso a peça não tenha nenhum impedimento ela move-se para baixo
+
+    return true;
+  }
+
+  tryMoveRight() {
+    let copy = this.clone();
+    copy.position.x++;
+
+    for (let i = 0; i < this._squaresCount; i++) {
+      for (let j = 0; j < this._squaresCount; j++) {
+        if (this._squares[i][j] && (GameManager.arena.isOutsideBoundaries(i, j, copy) || GameManager.arena.conflicts(i, j, copy))) {
+          return false;
+        }
+      }
+    }
+    this.position.x++;//caso a peça não tenha nenhum impedimento ela move-se para baixo
+
+    return true;
+  }
+
   tryMoveDown() {//metodo para executar a quedas de peças e verificar se tem espaço para cair
     let copy = this.clone();
     copy.position.y++;
