@@ -6,6 +6,9 @@ export default class InputHandler {
   }
   onKeyDown(e) {
     switch (e.code) {//metodo para simplificar a codificação de teclas
+      case "KeyW":
+        GameManager.arena.currentPiece.tryRotateAntiClockwise();
+        break;
       case "KeyA":
         GameManager.arena.currentPiece.tryMoveLeft();
         break;
