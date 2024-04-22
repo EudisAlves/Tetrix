@@ -127,7 +127,7 @@ export default class Polyomino {
     for (let i = 0; i < this._squaresCount; i++) {
       for (let j = 0; j < this._squaresCount; j++) {
         if (this._squares[i][j]) {
-          GameManager.arena.setSquare(this.position.x + i, this.position.y + j, this._squares[i][j]);
+          GameManager.arena.setSquare(this.position.y + j, this.position.x + i, this._squares[i][j]);
         }
       }
     }
