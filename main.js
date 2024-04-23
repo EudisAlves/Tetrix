@@ -7,6 +7,7 @@ const config = { //configurações do jogo
     columns: 10,
     lines: 20,
     squareSize: 25,
+    nextPieceQueueSize: 3,
 };
 
 GameManager.start(config);
