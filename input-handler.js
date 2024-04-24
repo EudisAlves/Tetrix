@@ -26,6 +26,8 @@ export default class InputHandler {
         }
         GameManager.score.addDropBonus(dropHeight);
         break;
+      case "Escape":
+        GameManager.inPause = !GameManager.inPause;
     }
   }
 }

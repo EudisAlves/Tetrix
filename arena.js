@@ -35,7 +35,7 @@ export default class Arena {
 
   _currentPieceFall() {//Função para verificar se as peças podem continuar a cair
 
-    if (!GameManager.arena.currentPiece.tryMoveDown()) {//caso o metodo não currentPiece não coseguiu andar para baixo ele recebe uma nova instrução no setPosition
+    if (!GameManager.inPause && !GameManager.arena.currentPiece.tryMoveDown()) {//caso o metodo não currentPiece não coseguiu andar para baixo ele recebe uma nova instrução no setPosition
       GameManager.arena.currentPiece.margeToArena();
       const removedLines = GameManager.arena.removeCompletedLines();
       GameManager.score.addCompletedLines(removedLines);
