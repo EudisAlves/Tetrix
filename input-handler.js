@@ -2,6 +2,7 @@ import GameManager from "./game-manager.js";
 
 export default class InputHandler {
   constructor() {
+    this.onKeyDown = this.onKeyDown.bind(this);
     document.addEventListener("keydown", this.onKeyDown);
   }
   onKeyDown(e) {
@@ -19,7 +20,11 @@ export default class InputHandler {
         GameManager.arena.currentPiece.tryMoveDown();
         break;
       case "Space":
-        while (GameManager.arena.currentPiece.tryMoveDown());
+        let dropHeight = 0;
+        while (GameManager.arena.currentPiece.tryMoveDown()) {
+          dropHeight++;
+        }
+        GameManager.score.addDropBonus(dropHeight);
         break;
     }
   }

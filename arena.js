@@ -12,16 +12,36 @@ export default class Arena {
     }
     this._squares = [...Array(this._lines)].map(() => [...Array(this._columns)]);
     
-    this.currentPiece = GameManager.tetrominoFactory.getTetromino().setPosition(1, 3);
-    this._currentPieceFallInterval = setInterval(this._currentPieceFall.bind(this), 1000);
+    this.currentPiece = GameManager.tetrominoFactory.getTetromino();
+    this._setCurrentpieceIntervalPosition();
+    this._currentPieceFallInterval = setInterval(() => this._currentPieceFall(), GameManager.config.initialPieceFallInMilliseconds);
+
+  }
+
+  _setCurrentpieceIntervalPosition() {
+    this.currentPiece.position = {
+      x: (this._columns - 4) /2,
+      y: 0
+    }
+  }
+
+  levelUp(newLevel) {
+    clearInterval(this._currentPieceFallInterval);
+    this._currentPieceFallInterval = setInterval(
+      this._currentPieceFall.bind(this), 
+      GameManager.config.initialPieceFallInMilliseconds * Math.pow(GameManager.config.pieceFallIntervalDecay, newLevel - 1) // função para diminuir o tempo de queda
+    );
   }
 
   _currentPieceFall() {//Função para verificar se as peças podem continuar a cair
 
     if (!GameManager.arena.currentPiece.tryMoveDown()) {//caso o metodo não currentPiece não coseguiu andar para baixo ele recebe uma nova instrução no setPosition
       GameManager.arena.currentPiece.margeToArena();
-      GameManager.arena.removeCompletedLines();
-      GameManager.arena.currentPiece = GameManager.nextPieceQueue.pop().setPosition(1, 3);
+      const removedLines = GameManager.arena.removeCompletedLines();
+      GameManager.score.addCompletedLines(removedLines);
+      
+      GameManager.arena.currentPiece = GameManager.nextPieceQueue.pop();
+      GameManager.arena._setCurrentpieceIntervalPosition();
     }
   }
 
