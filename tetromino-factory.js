@@ -14,6 +14,16 @@ export default class TetrominoFactory {
         ]
       ),
       () => new Tetromino(
+        
+        "#aeddFF",
+        [
+          [0, 0, 0, 0],
+          [1, 1, 0, 0],
+          [0, 1, 1, 0],
+          [0, 0, 0, 0]
+        ]
+      ),
+      () => new Tetromino(
   
         "#2626e9",
         [
@@ -39,6 +49,16 @@ export default class TetrominoFactory {
         [
           [0, 0, 0, 0],
           [0, 1, 1, 0],
+          [0, 1, 0, 0],
+          [0, 1, 0, 0]
+        ]
+      ),
+      () => new Tetromino(
+        
+        "#23AA55",
+        [
+          [0, 0, 0, 0],
+          [1, 1, 0, 0],
           [0, 1, 0, 0],
           [0, 1, 0, 0]
         ]
