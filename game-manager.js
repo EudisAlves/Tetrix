@@ -9,7 +9,7 @@ export default class GameManager {
   static start(config) {
     GameManager.config = config;
     GameManager.inPause = false;
-    window.addEventListener("load", GameManager._init);// metodo para esperar a tela ser carregada
+    window.addEventListener("load", GameManager._init);
   }
   
   static _init() {
@@ -36,9 +36,11 @@ export default class GameManager {
     GameManager.score.draw();
     GameManager.pauseScreen.draw();
 
-    requestAnimationFrame(GameManager._draw);// esse metodo vai chamar constantemente o draw
+    requestAnimationFrame(GameManager._draw);
   }
-  static levelUp(newLevel) {
-    GameManager.arena.levelUp(newLevel);
+
+  static gameOver() {
+    // Reiniciar o jogo
+    GameManager.start(GameManager.config);
   }
 }

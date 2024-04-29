@@ -106,13 +106,15 @@ export default class Polyomino {
       }
     }
 
+    // Verifica se a nova posição está dentro dos limites laterais da arena
     for (let i = 0; i < this._squaresCount; i++) {
       for (let j = 0; j < this._squaresCount; j++) {
-        if (this._squares[i][j] && (GameManager.arena.isOutsideBoundaries(i, j, copy) || GameManager.arena.conflicts(i, j, copy))) {
+        if (this._squares[i][j] && (GameManager.arena.isOutsideBoundaries(this.position.x + j, this.position.y + (this._squaresCount - i - 1), copy) || GameManager.arena.conflicts(this.position.x + j, this.position.y + (this._squaresCount - i - 1), copy))) {
           return false;
         }
       }
     }
+
 
     for (let i = 0; i < this._squaresCount; i++) {
       for (let j = 0; j < this._squaresCount; j++) {
