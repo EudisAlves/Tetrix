@@ -1,7 +1,7 @@
 import Arena from "./arena.js";
 import InputHandler from "./input-handler.js";
 import NextPieceQueue from "./next-piece-queue.js";
-import TetrominoFactory from "./tetromino-factory.js";
+import TetrominoFactory from "../tetromino-factory.js";
 import Score from "./score.js";
 import PauseScreen from "./pause-screen.js";
 
@@ -11,7 +11,7 @@ export default class GameManager {
     GameManager.inPause = false;
     window.addEventListener("load", GameManager._init);
   }
-  
+
   static _init() {
     let canvas = document.getElementById("canvas");
     canvas.width = GameManager.config.width;
@@ -30,7 +30,7 @@ export default class GameManager {
 
   static _draw() {
     GameManager.context.clearRect(0, 0, GameManager.config.width, GameManager.config.height);
-    
+
     GameManager.arena.draw();
     GameManager.nextPieceQueue.draw();
     GameManager.score.draw();

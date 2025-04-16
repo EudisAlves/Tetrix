@@ -10,7 +10,7 @@ export default class Square {
     GameManager.context.fillRect(
       x,
       y,
-      GameManager.config.squareSize,GameManager.config.squareSize
+      GameManager.config.squareSize, GameManager.config.squareSize
     );
   }
 }

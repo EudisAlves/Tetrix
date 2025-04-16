@@ -1,5 +1,5 @@
 import GameManager from "./game-manager.js";
-import TetrominoFactory from "./tetromino-factory.js";
+import TetrominoFactory from "../tetromino-factory.js";
 
 const config = { //configurações do jogo
     width: 960,
